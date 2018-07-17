@@ -1,0 +1,17 @@
+version: '2.3'
+services:
+
+  ### Mysql container
+  mysql:
+    environment:
+     - DATA=data
+    restart: always
+    volumes:
+     - ./my.cnf:/etc/my.cnf
+     - ./datadir/${DATA}:/var/lib/mysql
+     - ./mysql_general_log.log:/var/log/mysql_general_log.log
+    image: mysql/mysql-server:5.7
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
